@@ -1,0 +1,15 @@
+
+button.btn::after {
+    content: '';
+    height: 3px;
+    width: 0;
+    background: cyan;
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    transition: 0.5s;
+}
+
+button.btn:hover::after {
+    width: 100%;
+}

@@ -1,0 +1,73 @@
+body{
+    background-color: #444654;
+    color:aqua;
+    font-family: 'PT Sans', sans-serif;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  #box{
+      position: relative; 
+      background-color: black;
+      display: flex;
+      justify-content: space-around;
+      align-items: center; 
+      max-width: 900px;
+      width: 800px;
+      height: 550px;
+      color:cyan;
+      border-radius: 5px;
+      box-shadow: 5px 5px 5px aqua;
+      margin-top: 20px;
+  }
+  
+  .note{
+    position: absolute;
+    top: 0;
+    font-family: 'PT Sans', sans-serif;
+  }
+
+  @media (max-width: 600px) {
+    #box {
+      height: auto;
+      max-width: 590px;
+      width: 500px;
+    }
+  }
+
+  /*for iphone 6/7/8 */
+  @media (max-width: 375px) {
+      #box{
+    height: 666px;
+    max-width: 370px;
+    width: 500px;
+    box-shadow: none;
+    }
+  }
+ /* for iphone 12/13 pro max */
+  @media (max-width: 390px) {
+    #box{
+    height: 666px;
+    max-width: 370px;
+    width: 500px;
+    }
+  }
+
+  @media (max-width: 412px) {
+    #box{
+    height: 666px;
+    max-width: 405px;
+    width: 400px;
+    box-shadow: 2px 5px 5px 1px aqua;
+    }
+  }
+
+  @media (max-width: 360px) {
+    #box{
+        height: auto;
+        max-width: 355px;
+        width: 350px;
+    }
+  }

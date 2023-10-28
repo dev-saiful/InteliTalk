@@ -2,30 +2,6 @@
   margin: 0;
   padding: 0;
 }
-body{
-  background-color: #444654;
-  color:aqua;
-  font-family: 'Mukta', sans-serif;
-  background-size: cover;
+#main{
   display: flex;
-  justify-content: center;
-  text-align: center;
-}
-
-#box{
-    position: relative; 
-    background-color: black;
-    display: flex;
-    justify-content: center;
-     align-items: center; 
-    width: 800px;
-    height: 550px;
-    color:cyan;
-    border-radius: 5px;
-    box-shadow: 5px 5px 5px aqua;
-}
-
-.note{
-  position: absolute;
-  top: 0;
 }
