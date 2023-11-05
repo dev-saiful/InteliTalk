@@ -6,6 +6,7 @@ import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
 import { RetrievalQAChain } from "langchain/chains";
+import router from "./routes/route.js"
 
 const app = express();
 const PORT = process.env.PORT || 8001
@@ -47,6 +48,9 @@ const vectorStore = await HNSWLib.fromDocuments(
     query:question,
  });
 
+//  route mount
+app.use("/api/v1",router);
+
 
 app.get('/',(req,res)=>{
     
@@ -54,7 +58,9 @@ app.get('/',(req,res)=>{
 });
 
 
+
+
 app.listen(PORT,()=>{
     console.log(`Server is running on http://localhost:${PORT}`);
     console.log(answer);
-})
+});

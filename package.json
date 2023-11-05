@@ -1,5 +1,11 @@
 {
   "dependencies": {
     "vite": "^4.4.9"
+  },
+  "scripts": {
+    "server": "npm run start --prefix server",
+    "server-install": "npm install --prefix server",
+    "client": "npm run dev --prefix client",
+    "client-install": "npm install --prefix client"
   }
 }
