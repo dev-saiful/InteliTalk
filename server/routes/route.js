@@ -1,19 +1,17 @@
 import express from "express"
 import dotenv from "dotenv"
 dotenv.config();
-import { studentController } from "../controllers/studentController.js";
-import {guestController} from "../controllers/guestController.js";
-import { adminController } from "../controllers/adminController.js";
-import { auth } from "../middlewares/auth.js";
-
+import { login,signup,guest } from "../controllers/authController.js";
+import { auth,isAdmin,isStudent } from "../middlewares/auth.js";
 const router = express.Router();
-
-router.get("/guest", guestController);
-router.get("/student",  auth, studentController);
-router.get("/admin",  auth, adminController);
+// middlewares or controller to handle it
+router.post("/guest", guest);
+router.get("/student",  auth, isStudent);
+router.get("/admin",  auth, isAdmin);
 
 
 router.post("/login",login);
+router.post("/signup",isAdmin,signup);
 
 
 export default router;
