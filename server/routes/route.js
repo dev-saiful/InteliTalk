@@ -4,12 +4,16 @@ dotenv.config();
 import { login,signup,guest } from "../controllers/authController.js";
 import { auth,isAdmin,isStudent } from "../middlewares/auth.js";
 const router = express.Router();
-// middlewares or controller to handle it
-router.post("/guest", guest);
+// protected routes || middlewares or controller to handle it
 router.get("/student",  auth, isStudent);
-router.get("/admin",  auth, isAdmin);
+router.get("/admin",  auth, isAdmin,(req,res)=>{
+    return res.status(200).json({
+        success:true,
+        message:"Welcome to Admin Dashboard",
+    });
+});
 
-
+router.post("/guest", guest);
 router.post("/login",login);
 router.post("/signup",isAdmin,signup);
 

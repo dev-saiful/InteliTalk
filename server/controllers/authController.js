@@ -13,7 +13,11 @@ export const login = async(req,res)=>{
    try 
    {
       // getting info from request body
-      const {email,password,role} = req.body;
+      // const {email,password,role} = req.body;
+      const email = req.body.email;
+      const password = req.body.password;
+      const role = req.body.role;
+      console.log(email,password);
       // checking empty
       if(!email || !password)
       {
@@ -47,7 +51,8 @@ export const login = async(req,res)=>{
          let token = jwt.sign(payload,process.env.JWT_SECRET,{
             expiresIn:"2h",
          });
-         user = user.token;
+         user = user.toObject();
+         user.token = token;
          user.password = undefined;
          const options = {
             expires: new Date(Date.now()+30000),
