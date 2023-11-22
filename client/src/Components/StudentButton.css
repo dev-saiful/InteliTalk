@@ -1,15 +1,24 @@
-
-button.btn::after {
+#btn1::after {
     content: '';
     height: 3px;
     width: 0;
     background: cyan;
     position: absolute;
-    left: 0;
-    bottom: 5px;
+    left: 150px;
     transition: 0.5s;
+    top: 55%;
 }
 
-button.btn:hover::after {
-    width: 100%;
+#btn1:hover::after {
+    width:100px;
+}
+
+@media (max-width: 600px) {
+    #btn1::after {
+        width: 0; /* Override the width for the media query */
+    }
+
+    #btn1:hover::after {
+        width: 0; /* Override the hover effect for the media query */
+    }
 }
