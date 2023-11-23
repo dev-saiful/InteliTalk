@@ -16,7 +16,6 @@ export const login = async(req,res)=>{
       // const {email,password,role} = req.body;
       const email = req.body.email;
       const password = req.body.password;
-      const role = req.body.role;
       console.log(email,password);
       // checking empty
       if(!email || !password)
