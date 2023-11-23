@@ -64,5 +64,22 @@ export const isAdmin = (req,res,next)=>{
 }
 
 export const isStudent = (req,res,next)=>{
-    
+    try
+    {
+        if(req.user.role !== "Student")
+        {
+            return res.status(401).json({
+                success:false,
+                message:"This is protected route for Student",
+            });
+        }
+        next();
+    }
+    catch (error)
+    {
+        return res.status(500).json({
+            success:false,
+            message:"User role is not matching",
+        });
+    }
 }
