@@ -17,10 +17,12 @@ router.get("/admin",  auth, isAdmin,(req,res)=>{
         message:"Welcome to Admin Dashboard",
     });
 });
+router.post("/signup",auth,isAdmin,signup);
+
 
 router.post("/guest", guest);
 router.post("/login",login);
-router.post("/signup",isAdmin,signup);
+
 
 
 export default router;
