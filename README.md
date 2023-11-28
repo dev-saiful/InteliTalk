@@ -3,9 +3,9 @@
 
 ---
 
-<p>InteliTalk : Chatbot<br>
-MERN stack Application + Langchain</p>
-<p>How to Use :</p>
+<h2 id="intelitalk--chatbot">InteliTalk : Chatbot</h2>
+<h3 id="mern-stack-application--langchain">MERN stack Application + Langchain</h3>
+<h4 id="how-to-use-">How to Use :</h4>
 <ul>
 <li>git clone <a href="https://github.com/dev-saiful/InteliTalk.git">https://github.com/dev-saiful/InteliTalk.git</a></li>
 <li>Open with VS code</li>
