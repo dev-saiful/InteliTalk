@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import validator from 'validator';
 import { chain } from "../models/guest.model.js";
 import { userModel } from "../models/user.model.js";
 import "dotenv/config";
@@ -72,6 +73,7 @@ export const login = async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     console.log(email, password);
+    
     // checking empty
     if (!email || !password) {
       return res.status(400).json({
@@ -79,10 +81,18 @@ export const login = async (req, res) => {
         message: "Fill Must be filled up",
       });
     }
-
+// check email is valid or not
+if(!validator.isEmail(email))
+{
+  return res.status(400).json({
+    success: false,
+    message: "Invalid Email Address",
+  });
+  // throw new Error("Invalid Email Address");
+}
     let user = await userModel.findOne({ email });
     // check email
-    if (!email) {
+    if (!user) {
       return res.status(400).json({
         success: false,
         message: "Email not exists",
