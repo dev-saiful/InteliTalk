@@ -4,13 +4,14 @@
     width: 0;
     background: cyan;
     position: absolute;
-    left: 150px;
+    left: 50%; /* Center the line relative to the button */
+    transform: translateX(-50%); /* Center the line precisely */
     transition: 0.5s;
     top: 55%;
 }
 
 #btn1:hover::after {
-    width:100px;
+    width: 100px;
 }
 
 @media (max-width: 600px) {

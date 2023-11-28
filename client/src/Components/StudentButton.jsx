@@ -17,6 +17,7 @@ const StudentButton = () => {
       >
         Student
       </button>
+      <p className="test">hello</p>
     </div>
   );
 };

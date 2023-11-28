@@ -6,6 +6,7 @@ body {
   display: flex;
   justify-content: center;
   text-align: center;
+  position: relative;
 }
 
 #box {
@@ -30,66 +31,3 @@ body {
 
 }
 
-/* Responsive Styles */
-
-@media (max-width: 600px) {
-  #box {
-      height: auto;
-      max-width: 597px;
-      width: 590px;
-  }
-}
-
-/* iPhone 6/7/8 */
-@media (max-width: 375px) {
-  #box {
-      height: 666px;
-      max-width: 370px;
-      width: 500px;
-      box-shadow: none;
-  }
-}
-
-/* Responsive Styles for 300px width */
-@media (max-width: 300px) {
-  #box {
-      height: 500px;
-      max-width: auto;
-      width: 290px;
-  }
-}
-
-@media (max-width: 412px) {
-  #box {
-      height: 666px;
-      max-width: 405px;
-      width: 400px;
-      box-shadow: 2px 5px 5px 1px aqua;
-  }
-}
-
-@media (max-width: 360px) {
-  #box {
-      height: 700px;
-      max-width: 355px;
-      width: 350px;
-  }
-}
-
-/* Responsive Styles for 700px width */
-@media (max-width: 700px) {
-  #box {
-      height: 500px;
-      max-width: auto;
-      width: 690px;
-  }
-}
-
-/* Responsive Styles for 500px width */
-@media (max-width: 500px) {
-  #box {
-      height: 500px;
-      max-width: auto;
-      width: 490px;
-  }
-}

@@ -6,7 +6,7 @@ import StudentButton from "./StudentButton";
 
 const Intro = () => {
   return (
-    <div>
+    <div className="intro">
       <h1 className="font-extrabold text-4xl underline">InteliTalk</h1>
       <div id="box" className="w-4/5">
         <p className="note font-semibold text-lg">
