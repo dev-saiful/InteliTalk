@@ -1,33 +1,27 @@
-body {
-  background-color: #444654;
-  color: aqua;
-  font-family: 'PT Sans', sans-serif;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
+*{
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
   text-align: center;
-  position: relative;
 }
 
-#box {
-  position: relative;
-  background-color: black;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  max-width: 900px;
-  width: 800px;
-  height: 550px;
-  color: cyan;
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px aqua;
-  margin-top: 20px;
+.wel-note{
+  padding: 1rem;
 }
 
-.note {
-  padding: 3px;
-  position: absolute;
-  top: 0;
-
+#title{
+  height: 3rem;
+  background-color: yellow;
 }
-
+.buttons{
+  margin-top: 15%;
+}
+.std-btn{
+  border: 1px solid black;
+  padding: .7rem;
+  margin: .5rem;
+  border-radius: 5%;
+}
+.std-btn:hover{
+  background-color: blue;
+}

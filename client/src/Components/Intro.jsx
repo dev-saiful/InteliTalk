@@ -1,29 +1,33 @@
+import { Fragment } from "react";
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-import GuestButton from "./GuestButton";
+import { Outlet, Link } from "react-router-dom";
 import "./Intro.css";
-import StudentButton from "./StudentButton";
 
 const Intro = () => {
   return (
-    <div className="intro">
-      <h1 className="font-extrabold text-4xl underline">InteliTalk</h1>
-      <div id="box" className="w-4/5">
-        <p className="note font-semibold text-lg">
-          Welcome to the University Chatbot! How can I assist you today? Whether
-          you have questions about courses, admission, campus facilities, or
-          anything else related to the university, feel free to ask, and I'll
-          provide you with the information you need.
-        </p>
-
-        <div className="student__btn">
-          <Routes>
-            <Route path="/student" element={<StudentButton />} />
-            <Route path="/guest" element={<GuestButton />} />
-          </Routes>
+    <Fragment>
+      <div className="main flex flex-col">
+        <div className="title w-full bg-amber-400 pt-3 font-bold text-4xl">
+          <p>Intelitalk</p>
+        </div>
+        <div className="wel-note">
+          Welcome to Itelitalk! I'm here to make your academic 🎓 life a breeze
+          by answering all your questions. I've got the info you need. From
+          courses to campus facilities, consider me your go-to guide for all
+          things university. Let's dive into your queries and make your academic
+          journey smoother together! Ask away! 🌟
+        </div>
+        <div className="buttons">
+          <Link className="std-btn bg-green-300" to="/student">
+            <button>Student</button>
+          </Link>
+          <Link className="std-btn bg-green-300" to="/guest">
+            <button>Guest</button>
+          </Link>
         </div>
       </div>
-    </div>
+      <Outlet />
+    </Fragment>
   );
 };
 
