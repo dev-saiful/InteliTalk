@@ -95,7 +95,7 @@ export const login = async (req, res) => {
     };
 
     // check password
-    if (password === user.password) {
+    if (await bcrypt.compare(password,user.password)) {
       // password match
 
       // create token
@@ -124,14 +124,7 @@ export const login = async (req, res) => {
         message: "Password Mismatch",
       });
     }
-    // if(role === "Admin")
-    // {
-    //    // role match -> show role based message
-    //    return res.status(200).json({
-    //       success:true,
-    //       message:"User Logged in Successfully",
-    //    });
-    // }
+    
   } catch (error) {
     console.log(error);
     return res.status(500).json({
