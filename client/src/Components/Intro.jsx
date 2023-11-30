@@ -19,7 +19,7 @@ const Intro = () => {
         </div>
         <div className="buttons">
           <Link className="std-btn bg-green-300" to="/student">
-            <button>Student</button>
+            <button>Login</button>
           </Link>
           <Link className="std-btn bg-green-300" to="/guest">
             <button>Guest</button>

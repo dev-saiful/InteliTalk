@@ -1,5 +1,5 @@
 import React from "react";
-import "./GuestButton.css";
+// import "./GuestButton.css";
 
 const GuestButton = () => {
   const eventHanlder = () => {

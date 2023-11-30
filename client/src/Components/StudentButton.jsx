@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./StudentButton.css";
+// import "./StudentButton.css";
 
 const StudentButton = () => {
-  return <div>Testing if the page is render</div>;
+  return <div>Will work on this page tomorrow</div>;
 };
 
 export default StudentButton;

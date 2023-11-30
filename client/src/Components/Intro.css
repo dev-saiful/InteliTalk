@@ -1,27 +1,27 @@
 *{
-  margin: 0 auto;
-  padding: 0;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-.wel-note{
-  padding: 1rem;
-}
-
-#title{
-  height: 3rem;
-  background-color: yellow;
-}
-.buttons{
-  margin-top: 15%;
-}
-.std-btn{
-  border: 1px solid black;
-  padding: .7rem;
-  margin: .5rem;
-  border-radius: 5%;
-}
-.std-btn:hover{
-  background-color: blue;
-}
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .wel-note{
+    padding: 1rem;
+  }
+  
+  #title{
+    height: 3rem;
+    background-color: yellow;
+  }
+  .buttons{
+    margin-top: 15%;
+  }
+  .std-btn{
+    border: 1px solid black;
+    padding: .7rem;
+    margin: .5rem;
+    border-radius: 5%;
+  }
+  .std-btn:hover{
+    background-color: blue;
+  }
