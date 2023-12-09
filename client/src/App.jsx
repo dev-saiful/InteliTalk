@@ -7,9 +7,6 @@ import {
 } from "react-router-dom";
 
 import "./App.css";
-// import Intro from "./Components/Intro";
-// import StudentButton from "./Components/StudentButton";
-// import GuestButton from "./Components/GuestButton";
 import { router } from "./Router/Router";
 
 function App() {

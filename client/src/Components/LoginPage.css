@@ -1,0 +1,17 @@
+.inputs{
+    margin: 1rem;
+}
+input{
+    border: 1px solid aqua;
+}
+label{
+    margin: 5px;
+}
+.btn{
+    font-weight: 700;
+    border-radius: 5px;
+}
+.btn:hover{
+    background-color: brown;
+    color: white;
+}

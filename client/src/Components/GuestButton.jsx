@@ -6,7 +6,7 @@ const GuestButton = () => {
     console.log("guest clicked");
   };
 
-  return <div>Yes guest</div>;
+  return <div>here will be the chatbox</div>;
 };
 
 export default GuestButton;
