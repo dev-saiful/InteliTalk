@@ -1,95 +1,28 @@
-body {
-  background-color: #444654;
-  color: aqua;
-  font-family: 'PT Sans', sans-serif;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-
-#box {
-  position: relative;
-  background-color: black;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  max-width: 900px;
-  width: 800px;
-  height: 550px;
-  color: cyan;
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px aqua;
-  margin-top: 20px;
-}
-
-.note {
-  padding: 3px;
-  position: absolute;
-  top: 0;
-
-}
-
-/* Responsive Styles */
-
-@media (max-width: 600px) {
-  #box {
-      height: auto;
-      max-width: 597px;
-      width: 590px;
+*{
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
   }
-}
-
-/* iPhone 6/7/8 */
-@media (max-width: 375px) {
-  #box {
-      height: 666px;
-      max-width: 370px;
-      width: 500px;
-      box-shadow: none;
+  
+  .wel-note{
+    padding: 1rem;
+    font-size: large;
   }
-}
-
-/* Responsive Styles for 300px width */
-@media (max-width: 300px) {
-  #box {
-      height: 500px;
-      max-width: auto;
-      width: 290px;
+  
+  #title{
+    height: 3rem;
+    background-color: yellow;
   }
-}
-
-@media (max-width: 412px) {
-  #box {
-      height: 666px;
-      max-width: 405px;
-      width: 400px;
-      box-shadow: 2px 5px 5px 1px aqua;
+  .buttons{
+    margin-top: 15%;
   }
-}
-
-@media (max-width: 360px) {
-  #box {
-      height: 700px;
-      max-width: 355px;
-      width: 350px;
+  .std-btn{
+    border: 1px solid black;
+    padding: .7rem;
+    margin: .5rem;
+    border-radius: 5%;
   }
-}
-
-/* Responsive Styles for 700px width */
-@media (max-width: 700px) {
-  #box {
-      height: 500px;
-      max-width: auto;
-      width: 690px;
+  .std-btn:hover{
+    background-color: blue;
   }
-}
-
-/* Responsive Styles for 500px width */
-@media (max-width: 500px) {
-  #box {
-      height: 500px;
-      max-width: auto;
-      width: 490px;
-  }
-}

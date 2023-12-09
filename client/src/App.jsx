@@ -1,15 +1,24 @@
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+
 import "./App.css";
-import Intro from "./Components/Intro";
+import { router } from "./Router/Router";
 
 function App() {
   return (
-    <Router>
-      <div id="main">
-        <Intro />
-      </div>
-    </Router>
+    <RouterProvider router={router}></RouterProvider>
+
+    // <Routes>
+    //   <Route path="/" element={<Intro />}>
+    //     <Route path="/student" element={<StudentButton />} />
+    //     <Route path="/guest" element={<GuestButton />} />
+    //   </Route>
+    // </Routes>
   );
 }
 
