@@ -164,3 +164,35 @@ export const guest = async (req, res) => {
     });
   }
 };
+//  get all users
+export const getUser = async(req,res)=>{
+  try
+  {
+    let user = await userModel.find({role:"Student"});
+        if(user)
+        {
+            // user found
+            return res.status(200).json({
+                success:true,
+                message:"Fetched",
+                user,
+            });
+
+        }
+        else
+        {
+            // user not found
+            return res.status(400).json({
+                success:false,
+                message:"No users found",
+            });
+        }
+  }
+  catch(error)
+  {
+    return res.status(500).json({
+      success:false,
+      message:"Unable to fetch users",
+    });
+  }
+}
