@@ -5,13 +5,10 @@ const LoginPage = () => {
     <div>
       <form action="">
         <div className="inputs">
-          <label for="username">Username:</label>
-          <input type="text" id="name" required />
+          <label for="email">Email:</label>
+          <input type="email" id="email" required />
         </div>
-        <div className="inputs">
-          <label for="id">Student Id:</label>
-          <input type="number" id="name" required />
-        </div>
+
         <div className="inputs">
           <label for="password">password:</label>
           <input type="password" id="password" />
