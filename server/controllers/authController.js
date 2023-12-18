@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import validator from 'validator';
+import validator from "validator";
 import { chain } from "../models/guest.model.js";
 import { userModel } from "../models/user.model.js";
 import "dotenv/config";
@@ -8,7 +8,7 @@ import "dotenv/config";
 export const signup = async (req, res) => {
   try {
     // getting student info
-    const {name, email, password, confirmPassword, role} = req.body;
+    const { name, email, password, confirmPassword, role } = req.body;
     console.log(name, email, password, confirmPassword, role);
     // check filed is empty or not
     if (!name || !email || !password || !confirmPassword || !role) {
@@ -73,7 +73,7 @@ export const login = async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     console.log(email, password);
-    
+
     // checking empty
     if (!email || !password) {
       return res.status(400).json({
@@ -81,15 +81,14 @@ export const login = async (req, res) => {
         message: "Fill Must be filled up",
       });
     }
-// check email is valid or not
-if(!validator.isEmail(email))
-{
-  return res.status(400).json({
-    success: false,
-    message: "Invalid Email Address",
-  });
-  // throw new Error("Invalid Email Address");
-}
+    // check email is valid or not
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid Email Address",
+      });
+      // throw new Error("Invalid Email Address");
+    }
     let user = await userModel.findOne({ email });
     // check email
     if (!user) {
@@ -105,7 +104,7 @@ if(!validator.isEmail(email))
     };
 
     // check password
-    if (await bcrypt.compare(password,user.password)) {
+    if (await bcrypt.compare(password, user.password)) {
       // password match
 
       // create token
@@ -134,7 +133,6 @@ if(!validator.isEmail(email))
         message: "Password Mismatch",
       });
     }
-    
   } catch (error) {
     console.log(error);
     return res.status(500).json({
@@ -165,34 +163,60 @@ export const guest = async (req, res) => {
   }
 };
 //  get all users
-export const getUser = async(req,res)=>{
-  try
-  {
-    let user = await userModel.find({role:"Student"});
-        if(user)
-        {
-            // user found
-            return res.status(200).json({
-                success:true,
-                message:"Fetched",
-                user,
-            });
-
-        }
-        else
-        {
-            // user not found
-            return res.status(400).json({
-                success:false,
-                message:"No users found",
-            });
-        }
-  }
-  catch(error)
-  {
+export const getUsers = async (req, res) => {
+  try {
+    let user = await userModel.find({ role: "Student" });
+    if (user) {
+      // user found
+      return res.status(200).json({
+        success: true,
+        message: "Fetched",
+        user,
+      });
+    } else {
+      // user not found
+      return res.status(400).json({
+        success: false,
+        message: "No users found",
+      });
+    }
+  } catch (error) {
     return res.status(500).json({
-      success:false,
-      message:"Unable to fetch users",
+      success: false,
+      message: "Unable to fetch users",
     });
   }
-}
+};
+
+//  get user by id
+export const getUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await userModel.findById(id);
+    const userData = {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
+// check user found or not
+    if (user.role==="Student") {
+      return res.status(200).json({
+        success:true,
+        message:"User Found",
+         userData 
+        });
+    }
+    else
+    {
+      return res.status(400).json({
+        success:false,
+        message:"User not found",
+      });
+    }
+  } catch (err) {
+    return res.status(500).json({
+      success:false,
+      message:"Failed to find user",
+    });
+  }
+};

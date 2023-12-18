@@ -1,12 +1,12 @@
 import express from "express"
 import dotenv from "dotenv"
 dotenv.config();
-import { login,signup,guest, getUser } from "../controllers/authController.js";
+import { login,signup,guest, getUsers, getUser } from "../controllers/authController.js";
 import { auth,isAdmin,isStudent } from "../middlewares/auth.js";
-import path from "node:path";
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// import path from "node:path";
+// import { fileURLToPath } from 'url';
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 const router = express.Router();
 
 
@@ -30,7 +30,8 @@ router.get("/admin",  auth, isAdmin,(req,res)=>{
 router.post("/signup",auth,isAdmin,signup);
 
 // get all Student
-router.get("/user",auth,isAdmin,getUser);
+router.get("/user",auth,isAdmin,getUsers);
+router.get("/user/:id",getUser);
 
 router.post("/guest", guest);
 router.post("/login",login);
