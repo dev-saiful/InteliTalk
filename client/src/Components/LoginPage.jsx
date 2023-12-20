@@ -14,6 +14,42 @@ const LoginPage = () => {
     password: "",
   });
 
+  const registerUser = async (e) => {
+    // Preventing auto-reload on submit
+    e.preventDefault();
+
+    try {
+      const response = await postData("http://localhost:5001/", data);
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("Data successfully sent to the backend:", responseData);
+      } else {
+        console.log(
+          "Failed to login user:",
+          response.status,
+          response.statusText
+        );
+      }
+    } catch (error) {
+      console.log("Error during registration:", error);
+    }
+  };
+
+  const collectData = () => {
+    console.log("clicked");
+  };
+
+  const postData = async (url, data) => {
+    return fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  };
+
   return (
     <div>
       <form onSubmit={registerUser}>
@@ -51,7 +87,11 @@ const LoginPage = () => {
             onChange={(e) => setData({ ...data, password: e.target.value })}
           />
         </div>
-        <button className="bg-orange-300 w-28 btn" type="submit">
+        <button
+          className="bg-orange-300 w-28 btn"
+          type="submit"
+          onClick={collectData}
+        >
           Submit
         </button>
       </form>
