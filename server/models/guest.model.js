@@ -16,7 +16,7 @@ const docs = await loader.load();
 
 // splitter function
 const splitter = new RecursiveCharacterTextSplitter({
-    chunkSize: 100,
+    chunkSize: 1000,
     chunkOverlap: 10,
   });
   // create chunks from txt document
