@@ -21,9 +21,9 @@ app.use(express.static(path.join(__dirname,".","public")));
 dbConnect();
 //  route mount
 app.use("/api/v1",router);
-app.get("/*",(req,res)=>{
-    res.sendFile(path.join(__dirname,".","public","index.html"));
-});
+// app.get("/*",(req,res)=>{
+//     res.sendFile(path.join(__dirname,".","public","index.html"));
+// });
 // server active
 app.listen(PORT,()=>{
     console.log(`Server is running on http://localhost:${PORT}`);
