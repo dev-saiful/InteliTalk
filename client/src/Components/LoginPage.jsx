@@ -47,7 +47,11 @@ const LoginPage = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
+    console.log(await postData.json);
   };
 
   return (
