@@ -9,7 +9,7 @@ export const signup = async (req, res) => {
   try {
     // getting student info
     const { name, email, password, confirmPassword, role } = req.body;
-    console.log(name, email, password, confirmPassword, role);
+    // console.log(name, email, password, confirmPassword, role);
     // check filed is empty or not
     if (!name || !email || !password || !confirmPassword || !role) {
       return res.status(400).json({
