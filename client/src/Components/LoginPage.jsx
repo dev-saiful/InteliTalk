@@ -2,10 +2,7 @@ import { useState } from "react";
 import "./LoginPage.css";
 // import { Link } from "react-router-dom";
 
-const registerUser = (e) => {
-  //removing auto reload on submit
-  e.preventDefault();
-};
+const API_URL = "http://localhost:5001/api/v1";
 
 const LoginPage = () => {
   const [data, setData] = useState({
@@ -19,7 +16,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await postData("http://localhost:5001/", data);
+      const response = await postData(`${API_URL}/login`, data);
 
       if (response.ok) {
         const responseData = await response.json();
@@ -47,9 +44,6 @@ const LoginPage = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
     });
     console.log(await postData.json);
   };
@@ -57,17 +51,6 @@ const LoginPage = () => {
   return (
     <div>
       <form onSubmit={registerUser}>
-        <div className="inputs">
-          <label>Name:</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="name"
-            required
-            value={data.name}
-            onChange={(e) => setData({ ...data, name: e.target.value })}
-          />
-        </div>
         <div className="inputs">
           <label>Email:</label>
           <input
