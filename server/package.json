@@ -18,7 +18,6 @@
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "hnswlib-node": "^1.4.2",
     "jsonwebtoken": "^9.0.2",
     "langchain": "^0.0.170",
     "mongoose": "^8.0.0",
