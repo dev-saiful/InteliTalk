@@ -6,7 +6,6 @@ const API_URL = "http://localhost:5001/api/v1";
 
 const LoginPage = () => {
   const [data, setData] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -45,7 +44,7 @@ const LoginPage = () => {
       },
       body: JSON.stringify(data),
     });
-    console.log(await postData.json);
+    // console.log(await postData.json);
   };
 
   return (
@@ -82,9 +81,7 @@ const LoginPage = () => {
           Submit
         </button>
       </form>
-      {/* <Link className="std-btn bg-green-300" to="/guest">
-        <button>Guest</button>
-      </Link> */}
+     
     </div>
   );
 };
