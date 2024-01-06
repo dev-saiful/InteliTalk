@@ -11,10 +11,19 @@ export const signup = async (req, res) => {
     const { name, email, password, confirmPassword, role } = req.body;
     // console.log(name, email, password, confirmPassword, role);
     // check filed is empty or not
-    if (!name || !email || !password || !confirmPassword || !role) {
+    let checkEmpty = (validator.isEmpty(name) || validator.isEmpty(email) || validator.isEmpty(password) || validator.isEmpty(confirmPassword) || validator.isEmpty(role));
+    if (checkEmpty){
       return res.status(400).json({
         success: false,
         message: "Fill must be filled up",
+      });
+    }
+    // email validation
+    if(!validator.isEmail(email))
+    {
+      return res.status(400).json({
+        success:false,
+        message:"Invalid Email",
       });
     }
     // checking email already registered or not
@@ -75,7 +84,7 @@ export const login = async (req, res) => {
     console.log(email, password);
 
     // checking empty
-    if (!email || !password) {
+    if (validator.isEmpty(email)||validator.isEmpty(password)) {
       return res.status(400).json({
         success: false,
         message: "Fill Must be filled up",
