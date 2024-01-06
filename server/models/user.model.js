@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { mailSend } from "../config/configMail.js";
 
 const userSchema = mongoose.Schema({
     name:{
@@ -20,5 +21,7 @@ const userSchema = mongoose.Schema({
         enum:["Admin","Student"],
     }
 });
+// send mail successfully register
+userSchema.post("save",mailSend);
 
 export const userModel = mongoose.model("User",userSchema);

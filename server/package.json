@@ -22,6 +22,7 @@
     "jsonwebtoken": "^9.0.2",
     "langchain": "^0.0.170",
     "mongoose": "^8.0.0",
+    "nodemailer": "^6.9.8",
     "validator": "^13.11.0"
   },
   "devDependencies": {
