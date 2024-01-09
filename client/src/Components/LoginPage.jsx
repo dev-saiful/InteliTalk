@@ -1,50 +1,32 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 import "./LoginPage.css";
-// import { Link } from "react-router-dom";
 
 const API_URL = "http://localhost:5001/api/v1";
 
 const LoginPage = () => {
+  const history = useHistory(); 
   const [data, setData] = useState({
     email: "",
     password: "",
   });
 
   const registerUser = async (e) => {
-    // Preventing auto-reload on submit
     e.preventDefault();
 
     try {
-      const response = await postData(`${API_URL}/login`, data);
+      const response = await axios.post(`${API_URL}/login`, data);
 
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log("Data successfully sent to the backend:", responseData);
+      if (response.status === 200) {
+        console.log("Data successfully sent to the backend:");
+        history.push("/chat");
       } else {
-        console.log(
-          "Failed to login user:",
-          response.status,
-          response.statusText
-        );
+        console.log("Failed to login user:", response.status, response.statusText);
       }
     } catch (error) {
       console.log("Error during registration:", error);
     }
-  };
-
-  const collectData = () => {
-    console.log("clicked");
-  };
-
-  const postData = async (url, data) => {
-    return fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    // console.log(await postData.json);
   };
 
   return (
@@ -63,25 +45,20 @@ const LoginPage = () => {
         </div>
 
         <div className="inputs">
-          <label>password:</label>
+          <label>Password:</label>
           <input
             type="password"
             id="password"
-            placeholder="password"
+            placeholder="Password"
             required
             value={data.password}
             onChange={(e) => setData({ ...data, password: e.target.value })}
           />
         </div>
-        <button
-          className="bg-orange-300 w-28 btn"
-          type="submit"
-          onClick={collectData}
-        >
+        <button className="bg-orange-300 w-28 btn" type="submit">
           Submit
         </button>
       </form>
-     
     </div>
   );
 };
