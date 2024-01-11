@@ -3,7 +3,7 @@ import { OpenAI } from "langchain/llms/openai";
 import { TextLoader } from "langchain/document_loaders/fs/text";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { CloseVectorNode } from "langchain/vectorstores/closevector/node";
+import { HNSWLib } from "langchain/vectorstores/hnswlib";
 import { RetrievalQAChain } from "langchain/chains";
 
 const llm = new OpenAI({
@@ -24,7 +24,7 @@ const splittedDocs = await splitter.splitDocuments(docs);
 
 const embeddings = new OpenAIEmbeddings();
 // Vector database for store embeddings
-const vectorStore = await CloseVectorNode.fromDocuments(
+const vectorStore = await HNSWLib.fromDocuments(
     splittedDocs,
     embeddings,
   );
