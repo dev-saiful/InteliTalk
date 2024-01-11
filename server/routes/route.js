@@ -1,7 +1,7 @@
 import express from "express"
 import dotenv from "dotenv"
 dotenv.config();
-import { login,signup,guest, getUsers, getUser } from "../controllers/authController.js";
+import { login, signup, guest, getUsers, getUser, student } from "../controllers/authController.js";
 import { auth,isAdmin,isStudent } from "../middlewares/auth.js";
 // import path from "node:path";
 // import { fileURLToPath } from 'url';
@@ -22,12 +22,7 @@ router.get("/",(req,res)=>{
  * @desc Student Dashboard
  * @route GET "http:localhost:5001/api/v1/student"
  */
-router.get("/student",  auth, isStudent,(req,res)=>{
-    return res.status(200).json({
-        success:true,
-        message:"Welcome to Student Dashboard",
-    });
-});
+router.get("/student",  auth, isStudent,student);
 /**
 * @desc Admin Dashboard
 * @route GET "http:localhost:5001/api/v1/admin"

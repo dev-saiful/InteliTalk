@@ -11,7 +11,7 @@ const llm = new OpenAI({
   });
 
 // load text document
-const loader = new TextLoader("./data/public.txt");
+const loader = new TextLoader("./data/private.txt");
 const docs = await loader.load();
 
 // splitter function
@@ -34,7 +34,7 @@ const vectorStore = await HNSWLib.fromDocuments(
   });
   
   
- export const guestChain = RetrievalQAChain.fromLLM(model,vectorStoreRetriever);
+ export const studentChain = RetrievalQAChain.fromLLM(model,vectorStoreRetriever);
 
 //  This is our question
 //  const question = "What  is the name of Assitance Co-ordinator?";
