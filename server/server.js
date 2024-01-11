@@ -8,6 +8,7 @@ import router from "./routes/route.js"
 import { dbConnect } from './config/db.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import { errorhandler } from './middlewares/errorHandler.js';
 
 const app = express();
 const PORT = process.env.PORT || 8001
@@ -26,6 +27,7 @@ app.use("/api/v1",router);
 // app.get("/*",(req,res)=>{
 //     res.sendFile(path.join(__dirname,".","public","index.html"));
 // });
+app.all("*",errorhandler);
 // server active
 app.listen(PORT,()=>{
     console.log(`Server is running on http://localhost:${PORT}`);
