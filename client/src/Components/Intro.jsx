@@ -18,7 +18,7 @@ const Intro = () => {
           <Link className="std-btn bg-green-300" to="/login">
             <button>Login</button>
           </Link>
-          <Link className="std-btn bg-green-300" to="/guest">
+          <Link className="std-btn bg-green-300" to="/chat">
             <button>Guest</button>
           </Link>
         </div>
