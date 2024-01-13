@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import validator from "validator";
-import { chain } from "../models/guest.model.js";
+import { guestChain } from "../models/guest.model.js";
+import { studentChain } from "../models/student.model.js";
 import { userModel } from "../models/user.model.js";
 import "dotenv/config";
 
@@ -107,7 +108,6 @@ export const login = async (req, res) => {
       });
     }
     const payload = {
-      email: user.email,
       id: user._id,
       role: user.role,
     };
@@ -150,12 +150,12 @@ export const login = async (req, res) => {
     });
   }
 };
-
+// guest reply
 export const guest = async (req, res) => {
   const question = req.body.question;
   console.log(question);
   if (question) {
-    const ans = await chain.call({
+    const ans = await guestChain.call({
       query: question,
     });
     console.log(ans.text);
@@ -171,6 +171,29 @@ export const guest = async (req, res) => {
     });
   }
 };
+
+// student reply
+export const student = async (req, res) => {
+  const question = req.body.question;
+  console.log(question);
+  if (question) {
+    const ans = await studentChain.call({
+      query: question,
+    });
+    console.log(ans.text);
+    return res.status(200).json({
+      success: true,
+      message: "Answer is given",
+      ans,
+    });
+  } else {
+    return res.status(400).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};
+
 //  get all users
 export const getUsers = async (req, res) => {
   try {
