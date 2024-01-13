@@ -3,7 +3,7 @@ import GuestButton from "../Components/GuestButton";
 import Intro from "../Components/Intro";
 import LoginPage from "../Components/LoginPage";
 import MainLayout from "../Layout/MainLayout";
-import ChatPage from "../Components/ChatPage"
+import Chat from "../Components/Chat"
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/chat",
-        element: <ChatPage />, 
+        element: <Chat />, 
       },
     ],
   },

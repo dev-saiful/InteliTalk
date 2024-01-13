@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./LoginPage.css";
 
 const API_URL = "http://localhost:5001/api/v1";
 
 const LoginPage = () => {
-  const history = useHistory(); 
+  // const history = useHistory(); 
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -20,7 +20,7 @@ const LoginPage = () => {
 
       if (response.status === 200) {
         console.log("Data successfully sent to the backend:");
-        history.push("/chat");
+        // history.push("/chat");
       } else {
         console.log("Failed to login user:", response.status, response.statusText);
       }
