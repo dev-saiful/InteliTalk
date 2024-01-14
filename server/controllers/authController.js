@@ -9,10 +9,16 @@ import "dotenv/config";
 export const signup = async (req, res) => {
   try {
     // getting student info
-    const { name, email, password, confirmPassword, role } = req.body;
+    let { name, email, password, confirmPassword, role } = req.body;
     // console.log(name, email, password, confirmPassword, role);
     // check filed is empty or not
-    let checkEmpty = (validator.isEmpty(name) || validator.isEmpty(email) || validator.isEmpty(password) || validator.isEmpty(confirmPassword) || validator.isEmpty(role));
+    let checkEmpty = (validator.isEmpty(name) || validator.isEmpty(email) || validator.isEmpty(role));
+    let passEmpty = validator.isEmpty(password) || validator.isEmpty(confirmPassword);
+    if(passEmpty)
+    {
+      password = "123456";
+      confirmPassword = "123456";
+    }
     if (checkEmpty){
       return res.status(400).json({
         success: false,
