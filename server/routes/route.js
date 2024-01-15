@@ -49,8 +49,9 @@ router.get("/user",auth,isAdmin,getUsers);
 * @desc GET Individual User Information. Only Admin can view this.
 * @route GET "http://localhost:5001/api/v1/user/{{id}}"
 */
-router.get("/user/:id",getUser);
+router.get("/user/:id",auth,isAdmin,getUser);
 // TODO: update user info
+
 /**
 * @desc Guest Question Answer
 * @route POST "http://localhost:5001/api/v1/guest"
