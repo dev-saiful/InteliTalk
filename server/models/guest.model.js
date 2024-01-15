@@ -6,9 +6,9 @@ import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
 import { RetrievalQAChain } from "langchain/chains";
 
-const llm = new OpenAI({
-    openAIApiKey: process.env.OPENAI_API_KEY,
-  });
+// const llm = new OpenAI({
+//     openAIApiKey: process.env.OPENAI_API_KEY,
+//   });
 
 // load text document
 const loader = new TextLoader("./data/public.txt");
