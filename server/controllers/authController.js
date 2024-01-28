@@ -1,18 +1,22 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import validator from "validator";
-import { guestChain } from "../models/guest.model.js";
-import { studentChain } from "../models/student.model.js";
 import { userModel } from "../models/user.model.js";
 import "dotenv/config";
 
 export const signup = async (req, res) => {
   try {
     // getting student info
-    const { name, email, password, confirmPassword, role } = req.body;
+    let { name, email, password, confirmPassword, role } = req.body;
     // console.log(name, email, password, confirmPassword, role);
     // check filed is empty or not
-    let checkEmpty = (validator.isEmpty(name) || validator.isEmpty(email) || validator.isEmpty(password) || validator.isEmpty(confirmPassword) || validator.isEmpty(role));
+    let checkEmpty = (validator.isEmpty(name) || validator.isEmpty(email) || validator.isEmpty(role));
+    let passEmpty = validator.isEmpty(password) || validator.isEmpty(confirmPassword);
+    if(passEmpty)
+    {
+      password = "123456";
+      confirmPassword = "123456";
+    }
     if (checkEmpty){
       return res.status(400).json({
         success: false,
@@ -150,49 +154,6 @@ export const login = async (req, res) => {
     });
   }
 };
-// guest reply
-export const guest = async (req, res) => {
-  const question = req.body.question;
-  console.log(question);
-  if (question) {
-    const ans = await guestChain.call({
-      query: question,
-    });
-    console.log(ans.text);
-    return res.status(200).json({
-      success: true,
-      message: "Answer is given",
-      ans,
-    });
-  } else {
-    return res.status(400).json({
-      success: false,
-      message: "Something went wrong",
-    });
-  }
-};
-
-// student reply
-export const student = async (req, res) => {
-  const question = req.body.question;
-  console.log(question);
-  if (question) {
-    const ans = await studentChain.call({
-      query: question,
-    });
-    console.log(ans.text);
-    return res.status(200).json({
-      success: true,
-      message: "Answer is given",
-      ans,
-    });
-  } else {
-    return res.status(400).json({
-      success: false,
-      message: "Something went wrong",
-    });
-  }
-};
 
 //  get all users
 export const getUsers = async (req, res) => {
@@ -252,3 +213,56 @@ export const getUser = async (req, res) => {
     });
   }
 };
+
+// Update User
+export const updateUser = async(req,res)=>{
+  try
+  {
+    const { id } = req.params;
+    const {name,email} = req.body;
+    // checking input field is not empty
+    const checkField = validator.isEmpty(name) || validator.isEmpty(email);
+    if(checkField)
+    {
+      return res.status(400).json({
+        success:false,
+        message:"Fill the input field",
+      });
+    }
+    // checking valid email address
+    const checkEmail = validator.isEmail(email);
+    if(!checkEmail)
+    {
+      return res.status(400).json({
+        success:false,
+        message:"Invalid Email Address",
+      });
+    }
+    // updating information
+    const user = await userModel.findOneAndUpdate({_id:id},{name:name,email:email},{
+      new:true,
+    });
+    if(user)
+    {
+      return res.status(200).json({
+        success:true,
+        message:"User information is updated",
+      });
+    }
+    else
+    {
+      return res.status(404).json({
+        success:false,
+        message:"No user exists with this information",
+      })
+    }
+  }
+  catch(err)
+  {
+    console.log(err)
+    return res.status(500).json({
+      success:false,
+      message:"Failed to update user",
+    });
+  }
+}

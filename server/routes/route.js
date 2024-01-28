@@ -1,7 +1,8 @@
 import express from "express"
 import dotenv from "dotenv"
 dotenv.config();
-import { login, signup, guest, getUsers, getUser, student } from "../controllers/authController.js";
+import { login, signup, getUsers, getUser, updateUser } from "../controllers/authController.js";
+import {  student,guest  } from "../controllers/ansController.js";
 import { auth,isAdmin,isStudent } from "../middlewares/auth.js";
 // import path from "node:path";
 // import { fileURLToPath } from 'url';
@@ -22,7 +23,7 @@ router.get("/",(req,res)=>{
  * @desc Student Dashboard
  * @route GET "http:localhost:5001/api/v1/student"
  */
-router.get("/student",  auth, isStudent,student);
+// router.get("/student",  auth, isStudent,student);
 /**
 * @desc Admin Dashboard
 * @route GET "http:localhost:5001/api/v1/admin"
@@ -49,13 +50,14 @@ router.get("/user",auth,isAdmin,getUsers);
 * @desc GET Individual User Information. Only Admin can view this.
 * @route GET "http://localhost:5001/api/v1/user/{{id}}"
 */
-router.get("/user/:id",getUser);
+router.get("/user/:id",auth,isAdmin,getUser);
 // TODO: update user info
+router.put("/user/:id",auth,isAdmin,updateUser);
 /**
 * @desc Guest Question Answer
-* @route POST "http://localhost:5001/api/v1/guest"
+* @route GET "http://localhost:5001/api/v1/guest"
 */
-router.post("/guest", guest);
+router.get("/guest", guest);
 /**
 * @desc Login 
 * @field email,password

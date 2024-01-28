@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import router from "./routes/route.js"
-import { dbConnect } from './config/db.js';
+import {  mongoConnect } from './config/db.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { errorhandler } from './middlewares/errorHandler.js';
@@ -20,8 +20,7 @@ app.use(cookieParser());
 app.set("views","./views");
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname,".","public")));
-// connect to db
-dbConnect();
+
 //  route mount
 app.use("/api/v1",router);
 // app.get("/*",(req,res)=>{
@@ -29,7 +28,13 @@ app.use("/api/v1",router);
 // });
 app.all("*",errorhandler);
 // server active
-app.listen(PORT,()=>{
-    console.log(`Server is running on http://localhost:${PORT}`);
-   
-});
+async function startServer()
+{
+    await mongoConnect();
+    app.listen(PORT,()=>{
+        console.log(`Server is running on http://localhost:${PORT}`);
+       
+    });
+}
+
+startServer();
