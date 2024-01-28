@@ -3,7 +3,7 @@ import { studentChain } from "../models/student.model.js";
 
 // guest reply
 export const guest = async (req, res) => {
-    const question = req.body.question;
+    const question = req.query.question;
     console.log(question);
     if (question) {
       const ans = await guestChain.call({

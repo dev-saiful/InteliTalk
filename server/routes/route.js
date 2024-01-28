@@ -55,9 +55,9 @@ router.get("/user/:id",auth,isAdmin,getUser);
 router.put("/user/:id",auth,isAdmin,updateUser);
 /**
 * @desc Guest Question Answer
-* @route POST "http://localhost:5001/api/v1/guest"
+* @route GET "http://localhost:5001/api/v1/guest"
 */
-// router.post("/guest", guest);
+router.get("/guest", guest);
 /**
 * @desc Login 
 * @field email,password
