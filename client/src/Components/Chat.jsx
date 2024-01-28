@@ -1,25 +1,45 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-// import "./Chat.css"; 
+import axios from "axios";
+
+const API_URL = "http://localhost:5001/api/v1";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
 
-  // Function to handle sending a message
-  const sendMessage = () => {
-    if (inputMessage.trim() !== "") {
-      setMessages([...messages, { text: inputMessage, sender: "user" }]);
-      setInputMessage("");
-      //logic here to send the user's message to the backend if needed
-      // and get the AI's response
-      // Example: sendToBackend(inputMessage)
-      //            .then(response => setMessages([...messages, { text: response, sender: "ai" }]))
-      //            .catch(error => console.error("Error sending message to backend", error));
+  const fetchAnswerFromBackend = async (userQuestion) => {
+    try {
+      const response = await axios.get(`${API_URL}/guest`, {
+        params: {
+          question: encodeURIComponent(userQuestion)
+        }
+      });
+
+      console.log(response);
+
+      if(response.status === 200){
+        console.log(response.data.ans.text)
+      }else{
+        console.log("Error fetching data:", error);
+      }
+    } catch (error) {
+      console.error('Something went wrong !!!')
+      return { error: "Error fetching data" };
     }
   };
 
-  // Example: useEffect to simulate AI responses
+  const handleSendMessage = async () => {
+    if (inputMessage.trim() !== "") {
+      const userMessage = { text: inputMessage, sender: "user" };
+      setMessages([...messages, userMessage]);
+      console.log(inputMessage);
+      // Fetch answer from the backend
+      const response = await fetchAnswerFromBackend(inputMessage);
+      console.log(response)
+      setInputMessage("");
+    }
+  };
+
   useEffect(() => {
     // Simulating AI response after 1 second
     const timeoutId = setTimeout(() => {
@@ -36,9 +56,6 @@ const Chat = () => {
 
   return (
     <div className="chat-container">
-      {/* <div className="chat-header">
-        <Link to="/">Back to Home</Link>
-      </div> */}
       <div className="messages-container">
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.sender}`}>
@@ -48,12 +65,13 @@ const Chat = () => {
       </div>
       <div className="input-container">
         <input
+          name="question"
           type="text"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
-          placeholder="question"
+          placeholder="Enter your question"
         />
-        <button onClick={sendMessage}>Send</button>
+        <button onClick={handleSendMessage}>Send</button>
       </div>
     </div>
   );
