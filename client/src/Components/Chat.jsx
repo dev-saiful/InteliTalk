@@ -45,7 +45,7 @@ const Chat = () => {
     const timeoutId = setTimeout(() => {
       setMessages((prevMessages) => [
         ...prevMessages,
-        { text: "Hello! How can I assist you today?", sender: "ai" },
+        { text: "Hello!!! How can I assist you today?", sender: "ai" },
       ]);
     }, 1000);
 
