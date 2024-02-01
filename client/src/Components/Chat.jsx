@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import './Chat.css'
 
 const API_URL = "http://localhost:5001/api/v1";
 
@@ -15,16 +16,14 @@ const Chat = () => {
         }
       });
 
-      console.log(response);
-
       if(response.status === 200){
-        console.log(response.data.ans.text)
-      }else{
+        const aiMessage = { text: response.data.ans.text, sender: "ai" };
+        setMessages(prevMessages => [...prevMessages, aiMessage]);
+      } else {
         console.log("Error fetching data:", error);
       }
     } catch (error) {
       console.error('Something went wrong !!!')
-      return { error: "Error fetching data" };
     }
   };
 
@@ -32,10 +31,7 @@ const Chat = () => {
     if (inputMessage.trim() !== "") {
       const userMessage = { text: inputMessage, sender: "user" };
       setMessages([...messages, userMessage]);
-      console.log(inputMessage);
-      // Fetch answer from the backend
-      const response = await fetchAnswerFromBackend(inputMessage);
-      console.log(response)
+      await fetchAnswerFromBackend(inputMessage);
       setInputMessage("");
     }
   };
@@ -43,10 +39,8 @@ const Chat = () => {
   useEffect(() => {
     // Simulating AI response after 1 second
     const timeoutId = setTimeout(() => {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: "Hello!!! How can I assist you today?", sender: "ai" },
-      ]);
+      const aiMessage = { text: "Hello! How can I assist you today?", sender: "ai" };
+      setMessages(prevMessages => [...prevMessages, aiMessage]);
     }, 1000);
 
     // Cleanup function to clear the timeout on component unmount or dependency change
