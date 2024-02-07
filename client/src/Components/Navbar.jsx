@@ -3,18 +3,18 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="bg-gray-800 text-center">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-evenly">
-          <div className="title text-white">
+    <nav className="bg-black">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-black">
+        <div className="flex bg-black items-center justify-between h-16">
+          <div className="flex-shrink-0">
             <Link
-              className="text-2xl font-extrabold text-cyan-400 italic"
+              className="text-2xl bg-black font-extrabold text-cyan-400 italic"
               to="/"
             >
               InteliTalk
             </Link>
           </div>
-          <div className="links space-x-4">
+          <div className="flex bg-black space-x-4">
             <Link
               to="/chat"
               className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
