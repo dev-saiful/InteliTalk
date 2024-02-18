@@ -1,0 +1,29 @@
+*{
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .wel-note{
+    color: white;
+    padding: 1rem;
+    font-size: large;
+  }
+  
+  #title{
+    height: 3rem;
+    background-color: yellow;
+  }
+  .buttons{
+    margin-top: 15%;
+  }
+  .std-btn{
+    border: 1px solid black;
+    padding: .7rem;
+    margin: .5rem;
+    border-radius: 5%;
+  }
+  .std-btn:hover{
+    background-color: blue;
+  }
