@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { LiaRobotSolid } from "react-icons/lia";
+import { SlUser } from "react-icons/sl";
 import axios from "axios";
-import './Chat.css'
+import './Chat.css';
 
 const API_URL = "http://localhost:5001/api/v1";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchAnswerFromBackend = async (userQuestion) => {
+    setIsLoading(true); // Set loading state to true
     try {
       const response = await axios.get(`${API_URL}/guest`, {
         params: {
@@ -16,7 +20,7 @@ const Chat = () => {
         }
       });
 
-      if(response.status === 200){
+      if (response.status === 200) {
         const aiMessage = { text: response.data.ans.text, sender: "ai" };
         setMessages(prevMessages => [...prevMessages, aiMessage]);
       } else {
@@ -24,6 +28,8 @@ const Chat = () => {
       }
     } catch (error) {
       console.error('Something went wrong !!!')
+    } finally {
+      setIsLoading(false); // Reset loading state
     }
   };
 
@@ -53,9 +59,24 @@ const Chat = () => {
       <div className="messages-container">
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.sender}`}>
-            {message.text}
+            {message.sender === "ai" && (
+              <div className="ai-message-content">
+                <LiaRobotSolid className="bot-icon" />
+                <div className="bot-text">{message.text}</div>
+              </div>
+            )}
+            {message.sender === "user" && (
+              <div className="user-message-content">
+               
+                <div className="user-text">{message.text}</div>
+                <SlUser className="user-icon" />
+              </div>
+            )}
           </div>
         ))}
+
+        {/* Loading animation */}
+        {isLoading && <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
       </div>
       <div className="input-container">
         <input
