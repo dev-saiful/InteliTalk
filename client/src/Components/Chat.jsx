@@ -47,7 +47,7 @@ const Chat = () => {
     const timeoutId = setTimeout(() => {
       const aiMessage = { text: "Hello! How can I assist you today?", sender: "ai" };
       setMessages(prevMessages => [...prevMessages, aiMessage]);
-    }, 1000);
+    }, 500);
 
     // Cleanup function to clear the timeout on component unmount or dependency change
     return () => clearTimeout(timeoutId);
@@ -59,7 +59,7 @@ const Chat = () => {
       <div className="messages-container">
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.sender}`}>
-            {message.sender === "ai" && (
+            {message.sender === "ai" && (              
               <div className="ai-message-content">
                 <LiaRobotSolid className="bot-icon" />
                 <div className="bot-text">{message.text}</div>

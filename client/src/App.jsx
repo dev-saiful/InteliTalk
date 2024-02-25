@@ -12,13 +12,6 @@ import { router } from "./Router/Router";
 function App() {
   return (
     <RouterProvider router={router}></RouterProvider>
-
-    // <Routes>
-    //   <Route path="/" element={<Intro />}>
-    //     <Route path="/student" element={<StudentButton />} />
-    //     <Route path="/guest" element={<GuestButton />} />
-    //   </Route>
-    // </Routes>
   );
 }
 
