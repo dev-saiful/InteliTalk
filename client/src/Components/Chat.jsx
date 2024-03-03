@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { LiaRobotSolid } from "react-icons/lia";
 import { SlUser } from "react-icons/sl";
 import axios from "axios";
@@ -42,12 +42,19 @@ const Chat = () => {
     }
   };
 
+    //Function for the Enter button
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSendMessage();
+    }
+  };
+
   useEffect(() => {
     // Simulating AI response after 1 second
     const timeoutId = setTimeout(() => {
       const aiMessage = { text: "Hello! How can I assist you today?", sender: "ai" };
       setMessages(prevMessages => [...prevMessages, aiMessage]);
-    }, 500);
+    }, 1000);
 
     // Cleanup function to clear the timeout on component unmount or dependency change
     return () => clearTimeout(timeoutId);
@@ -84,6 +91,7 @@ const Chat = () => {
           type="text"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
+          onKeyPress={handleKeyPress}
           placeholder="Enter your question"
         />
         <button onClick={handleSendMessage}>Send</button>
