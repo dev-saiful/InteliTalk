@@ -4,12 +4,12 @@ import { studentChain } from "../models/student.model.js";
 // guest reply
 export const guest = async (req, res) => {
     const question = req.query.question;
-    console.log(question);
+    // console.log(question);
     if (question) {
       const ans = await guestChain.call({
         query: question,
       });
-      console.log(ans.text);
+      // console.log(ans.text);
       return res.status(200).json({
         success: true,
         message: "Answer is given",

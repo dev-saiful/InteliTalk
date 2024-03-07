@@ -15,7 +15,7 @@ RUN npm run build --prefix client
 
 COPY server/ server/
 
-USER intelitalk
+# USER intelitalk
 
 CMD [ "npm","start","--prefix","server" ]
 

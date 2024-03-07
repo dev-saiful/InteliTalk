@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import "./LoginPage.css";
 
-const API_URL = "http://localhost:5001/api/v1";
+const API_URL = "api/v1";
 
 const LoginPage = () => {
   // const history = useHistory(); 

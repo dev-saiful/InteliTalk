@@ -1,9 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
 import path from "node:path";
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 import router from "./routes/route.js"
 import {  mongoConnect } from './config/db.js';
 import cookieParser from 'cookie-parser';
@@ -17,16 +14,29 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
-app.set("views","./views");
-app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname,".","public")));
-
 //  route mount
 app.use("/api/v1",router);
-// app.get("/*",(req,res)=>{
-//     res.sendFile(path.join(__dirname,".","public","index.html"));
-// });
+
+const __dirname = path.resolve();
+
+if(process.env.NODE_ENV === "production")
+{
+    // set static folder
+    app.use(express.static(path.join(__dirname,"..","/client/dist")));
+
+    app.get("*",(req,res)=>{
+        res.sendFile(path.resolve(__dirname,"..","client","dist","index.html"));
+    });
+}
+else
+{
+    app.get("/",(req,res)=>{
+        res.send("Api is running");
+    });
+}
+
 app.all("*",errorhandler);
+// app.all("*",errorhandler);
 // server active
 async function startServer()
 {

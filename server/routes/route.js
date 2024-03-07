@@ -4,19 +4,15 @@ dotenv.config();
 import { login, signup, getUsers, getUser, updateUser } from "../controllers/authController.js";
 import {  student,guest  } from "../controllers/ansController.js";
 import { auth,isAdmin,isStudent } from "../middlewares/auth.js";
-// import path from "node:path";
-// import { fileURLToPath } from 'url';
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
 const router = express.Router();
 
 /**
 * @desc Home Page
 * @route GET "http://localhost:5001/api/v1"
 */
-router.get("/",(req,res)=>{
-    res.render("index");
-});
+// router.get("/",(req,res)=>{
+//     res.render("index");
+// });
 
 /**
 * @desc protected routes || middlewares or controller to handle it

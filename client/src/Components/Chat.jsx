@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './Chat.css'
 
-const API_URL = "http://localhost:5001/api/v1";
+const API_URL = "api/v1";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);

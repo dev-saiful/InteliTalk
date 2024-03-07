@@ -1,13 +1,11 @@
 {
-  "dependencies": {
-    "react-router-dom": "^6.19.0",
-    "vite": "^4.4.9"
-  },
+  
   "scripts": {
     "server": "npm run start --prefix server",
-    "server-install": "npm install --prefix server",
     "client": "npm run dev --prefix client",
     "client-install": "npm install --prefix client",
-    "install": "npm run server-install & npm run client-install"
+    "server-install": "npm install --prefix server",
+    "install": "npm run server-install & npm run client-install",
+    "build": "npm run build --prefix client && npm run server"
   }
 }
