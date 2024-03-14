@@ -4,32 +4,20 @@ dotenv.config();
 import { login, signup, getUsers, getUser, updateUser } from "../controllers/authController.js";
 import {  student,guest  } from "../controllers/ansController.js";
 import { auth,isAdmin,isStudent } from "../middlewares/auth.js";
-// import path from "node:path";
-// import { fileURLToPath } from 'url';
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-const router = express.Router();
 
-/**
-* @desc Home Page
-* @route GET "http://localhost:5001/api/v1"
-*/
-router.get("/",(req,res)=>{
-    res.render("index");
-});
+const router = express.Router();
 
 /**
 * @desc protected routes || middlewares or controller to handle it
  * @desc Student Dashboard
  * @route GET "http:localhost:5001/api/v1/student"
  */
-// router.get("/student",  auth, isStudent,student);
+router.get("/student",  auth, isStudent,student);
 /**
 * @desc Admin Dashboard
 * @route GET "http:localhost:5001/api/v1/admin"
 */
 router.get("/admin",  auth, isAdmin,(req,res)=>{
-    //  res.render("admin");
     return res.status(200).json({
         success:true,
         message:"Welcome to Admin Dashboard",
