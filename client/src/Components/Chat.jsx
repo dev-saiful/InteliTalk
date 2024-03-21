@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { LiaRobotSolid } from "react-icons/lia";
 import { SlUser } from "react-icons/sl";
 import axios from "axios";
@@ -42,6 +42,13 @@ const Chat = () => {
     }
   };
 
+    //Function for the Enter button
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSendMessage();
+    }
+  };
+
   useEffect(() => {
     // Simulating AI response after 1 second
     const timeoutId = setTimeout(() => {
@@ -59,7 +66,7 @@ const Chat = () => {
       <div className="messages-container">
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.sender}`}>
-            {message.sender === "ai" && (
+            {message.sender === "ai" && (              
               <div className="ai-message-content">
                 <LiaRobotSolid className="bot-icon" />
                 <div className="bot-text">{message.text}</div>
@@ -84,6 +91,7 @@ const Chat = () => {
           type="text"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
+          onKeyPress={handleKeyPress}
           placeholder="Enter your question"
         />
         <button onClick={handleSendMessage}>Send</button>

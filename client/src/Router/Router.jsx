@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import GuestButton from "../Components/GuestButton";
+import StudentUi from "../Components/StudentUi";
 import Intro from "../Components/Intro";
 import LoginPage from "../Components/LoginPage";
 import MainLayout from "../Layout/MainLayout";
 import Chat from "../Components/Chat"
+import Admin from "../Components/Admin";
 
 export const router = createBrowserRouter([
   {
@@ -14,10 +15,16 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Intro />,
       },
-      { path: "/login", element: <LoginPage /> },
+      { path: "/login",
+       element: <LoginPage />
+      },
       {
-        path: "/guest",
-        element: <GuestButton />,
+        path: "/student",
+        element: <StudentUi />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
       },
       {
         path: "/chat",
