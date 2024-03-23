@@ -23,7 +23,7 @@ router.get("/",(req,res)=>{
  * @desc Student Dashboard
  * @route GET "http:localhost:5001/api/v1/student"
  */
-// router.get("/student",  auth, isStudent,student);
+router.get("/student",  auth, isStudent,student);
 /**
 * @desc Admin Dashboard
 * @route GET "http:localhost:5001/api/v1/admin"

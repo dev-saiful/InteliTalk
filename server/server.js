@@ -15,7 +15,10 @@ const PORT = process.env.PORT || 8001
 // middleware
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+}));
 app.use(cookieParser());
 app.set("views","./views");
 app.set("view engine", "ejs");

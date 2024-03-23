@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './LoginPage.css'
+import './LoginPage.css';
 
 const API_URL = "http://localhost:5001/api/v1";
 
@@ -18,13 +18,17 @@ const LoginPage = () => {
     const { email, password } = data;
     try {
       const response = await axios.post(`${API_URL}/login`, { email, password });
+
       const { token, user } = response.data;
 
       // Store the token and user data in local storage
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
 
-      // Redirect to appropriate dashboard based on user role
+      // Set the token in the Axios default headers
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      // Redirect to appropriate dashboa;rd based on user role
       if (user.role === 'Student') {
         navigate('/student');
       } else if (user.role === 'Admin') {

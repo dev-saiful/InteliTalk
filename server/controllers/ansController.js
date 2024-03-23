@@ -25,7 +25,7 @@ export const guest = async (req, res) => {
   
   // student reply
   export const student = async (req, res) => {
-    const question = req.body.question;
+    const question = req.query.question;
     console.log(question);
     if (question) {
       const ans = await studentChain.call({

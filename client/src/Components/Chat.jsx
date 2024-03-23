@@ -24,10 +24,10 @@ const Chat = () => {
         const aiMessage = { text: response.data.ans.text, sender: "ai" };
         setMessages(prevMessages => [...prevMessages, aiMessage]);
       } else {
-        console.log("Error fetching data:", error);
+        console.log("Error fetching data:", response.status);
       }
     } catch (error) {
-      console.error('Something went wrong !!!')
+      console.log('Something went wrong:', error); // Log the error message
     } finally {
       setIsLoading(false); // Reset loading state
     }
@@ -42,7 +42,7 @@ const Chat = () => {
     }
   };
 
-    //Function for the Enter button
+  //Function for the Enter button
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       handleSendMessage();
@@ -74,7 +74,6 @@ const Chat = () => {
             )}
             {message.sender === "user" && (
               <div className="user-message-content">
-               
                 <div className="user-text">{message.text}</div>
                 <SlUser className="user-icon" />
               </div>
